@@ -7,7 +7,7 @@ variable "ip_addresses" {
 }
 
 variable "vm_count" {
-    type = "number"
+    type = "string"
     default = 10
 }
 
