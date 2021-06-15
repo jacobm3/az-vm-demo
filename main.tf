@@ -7,20 +7,11 @@ variable "ip_addresses" {
 }
 
 variable "vm_count" {
-    type = "string"
-    default = "10"
+    type = string
+    default = "3"
 }
 
-
 variable "resource_group"  { default = "jmartinson-demo-rg" }
-variable "location"        { default = "southcentralus" }
-variable "image_publisher" { default = "Canonical" }
-variable "image_offer"     { default = "UbuntuServer" }
-variable "image_sku"       { default = "16.04-LTS" }
-variable "image_version"   { default = "latest" }
-variable "vm_size"         { default = "Standard_A0" }
-variable "admin_username"  { default = "adminuser" }
-variable "admin_password"  { default = "EXI??weu209ew29" }
 
 resource "azurerm_resource_group" "test" {
   name     = "${var.resource_group}"
