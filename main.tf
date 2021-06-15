@@ -5,6 +5,9 @@ provider "azurerm" {
 resource "azurerm_resource_group" "test" {
   name     = "${var.resource_group}"
   location = "${var.location}"
+  tags = {
+    owner = "jmartinson"
+  }
 }
 
 resource "azurerm_virtual_network" "test" {
@@ -12,6 +15,9 @@ resource "azurerm_virtual_network" "test" {
   address_space       = ["10.0.0.0/16"]
   location            = "${azurerm_resource_group.test.location}"
   resource_group_name = "${azurerm_resource_group.test.name}"
+  tags = {
+    owner = "jmartinson"
+  }
 }
 
 resource "azurerm_subnet" "test" {
@@ -19,6 +25,9 @@ resource "azurerm_subnet" "test" {
   resource_group_name  = "${azurerm_resource_group.test.name}"
   virtual_network_name = "${azurerm_virtual_network.test.name}"
   address_prefixes       = ["10.0.2.0/24"]
+  tags = {
+    owner = "jmartinson"
+  }
 }
 
 resource "azurerm_network_interface" "test" {
@@ -33,6 +42,9 @@ resource "azurerm_network_interface" "test" {
     subnet_id                     = "${azurerm_subnet.test.id}"
     private_ip_address_allocation = "Static"
     private_ip_address            = "${element(var.ip_addresses, count.index)}"
+  }
+  tags = {
+    owner = "jmartinson"
   }
 }
 
