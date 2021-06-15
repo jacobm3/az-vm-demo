@@ -5,6 +5,21 @@
 # Terraform code. If you create a variable with no default, the user will be
 # prompted to enter it (or define it via config file or command line flags.)
 
+variable "ip_addresses" {
+  default = [
+    "10.0.2.11",
+    "10.0.2.12",
+    "10.0.2.13",
+  ]
+}
+
+variable "vm_count" {
+    type = string
+    default = "3"
+}
+
+variable "resource_group"  { default = "jmartinson-demo-rg" }
+
 variable "prefix" {
   description = "This prefix will be included in the name of most resources."
 }
