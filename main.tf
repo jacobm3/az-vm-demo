@@ -12,7 +12,7 @@ variable "vm_count" {
 }
 
 
-variable "resource_group"  { default = "demo-rg" }
+variable "resource_group"  { default = "jmartinson-demo-rg" }
 variable "location"        { default = "southcentralus" }
 variable "image_publisher" { default = "Canonical" }
 variable "image_offer"     { default = "UbuntuServer" }
@@ -28,14 +28,14 @@ resource "azurerm_resource_group" "test" {
 }
 
 resource "azurerm_virtual_network" "test" {
-  name                = "test"
+  name                = "jmartinson-test"
   address_space       = ["10.0.0.0/16"]
   location            = "${azurerm_resource_group.test.location}"
   resource_group_name = "${azurerm_resource_group.test.name}"
 }
 
 resource "azurerm_subnet" "test" {
-  name                 = "internal"
+  name                 = "jmartinson-internal"
   resource_group_name  = "${azurerm_resource_group.test.name}"
   virtual_network_name = "${azurerm_virtual_network.test.name}"
   address_prefix       = "10.0.2.0/24"
@@ -57,7 +57,7 @@ resource "azurerm_network_interface" "test" {
 }
 
 resource "azurerm_virtual_machine" "vm" {
-  name = "vm${count.index}"
+  name = "jmartinsonvm${count.index}"
   count = "${var.vm_count}"
   location            = "${var.location}"
   resource_group_name = "${azurerm_resource_group.test.name}"
