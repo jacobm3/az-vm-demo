@@ -1,17 +1,6 @@
-variable "ip_addresses" {
-  default = [
-    "10.0.2.11",
-    "10.0.2.12",
-    "10.0.2.13",
-  ]
+provider "azurerm" {
+  features {}
 }
-
-variable "vm_count" {
-    type = string
-    default = "3"
-}
-
-variable "resource_group"  { default = "jmartinson-demo-rg" }
 
 resource "azurerm_resource_group" "test" {
   name     = "${var.resource_group}"
